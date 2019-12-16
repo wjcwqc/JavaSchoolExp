@@ -1,23 +1,20 @@
-package com.wjcwqc.bm;
+package com.wjcwqc.ball;
 
 import javax.swing.*;
 
-public class MainGame {
+public class Myball {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        //画布初始化
-        MainPanel panel = new MainPanel();
+        Myballpanel panel = new Myballpanel();
         frame.add(panel);
-        //线程初始化
-        Thread t=new Thread(panel);
+        Thread t = new Thread(panel);
         t.start();
-        //窗口初始化
-        frame.setTitle("Bomberman");
+
+        frame.setSize(800, 600);
         frame.setUndecorated(true);
-        frame.setSize(925,700);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
     }
+
 }

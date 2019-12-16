@@ -7,9 +7,9 @@ import static java.lang.Math.*;
 
 public class StarPanel extends JPanel implements Runnable {
 
-    static final int max = 20000;
-    static final int w = 1920;
-    static final int l = 1080;
+    static final int max = 200;
+    static final int w = 800;
+    static final int l = 600;
     int[] xx = new int[max];
     int[] yy = new int[max];
 
@@ -26,6 +26,9 @@ public class StarPanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         Font font = new Font("微软雅黑", Font.BOLD, 28);
         g.setColor(Color.WHITE);
+        g.fillOval(100, 100, 100, 100);
+        g.setColor(Color.BLACK);
+        g.fillOval(130, 70, 100, 100);
         for (int i = 0; i < max; i++) {
 //            int x=(int)(random()*800);
 //            int y=(int)(random()*600);
@@ -41,7 +44,18 @@ public class StarPanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
+
         while (true) {
+            for (int i = 0; i < max; i++) {
+                xx[i]++;
+                yy[i]++;
+                if (xx[i] > w) {
+                    xx[i] = 0;
+                }
+                if (yy[i] > l) {
+                    yy[i] = 0;
+                }
+            }
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {

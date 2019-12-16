@@ -18,10 +18,14 @@ public class MainPanel extends JPanel implements Runnable {
         }
     }
     //part three
+    public void paint(Graphics g) {
+        super.paint(g);
+        paintBack(g);
+    }
 
-    public void paintBack(Graphics g){
+    public void paintBack(Graphics g) {
         //参数null当前画布
-        g.drawImage(back,0,0,925,700,null);
+        g.drawImage(back, 0, 0, 925, 700, null);
     }
     //part four
     @Override

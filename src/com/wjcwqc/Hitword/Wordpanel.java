@@ -57,6 +57,7 @@ public class Wordpanel extends JPanel implements Runnable, KeyListener {
                 y[i] = 0;
             }
         }
+
     }
 
     public long level() {
@@ -84,6 +85,7 @@ public class Wordpanel extends JPanel implements Runnable, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         for (int i = 0; i < 10; i++) {
+            System.out.println("a");
             if (e.getKeyChar() == c[i]) {
                 s += 5;
                 c[i] = (char) (random() * 26 + 65);

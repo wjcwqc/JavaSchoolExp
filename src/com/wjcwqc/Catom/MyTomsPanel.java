@@ -15,7 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class MyTomsPanel extends JPanel implements Runnable, MouseListener {
+public class MyTomsPanel extends Panel implements Runnable, MouseListener {
 
     BufferedImage back;
     BufferedImage eatButton;

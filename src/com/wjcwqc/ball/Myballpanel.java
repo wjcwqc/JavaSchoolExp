@@ -1,31 +1,49 @@
 package com.wjcwqc.ball;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 
 import static java.lang.Math.random;
 
 public class Myballpanel extends JPanel implements Runnable {
-    int x = 30;
-    int y = 30;
-    int f = 0;
+    int[] x = new int[5];
+    int[] y = new int[5];
+    int[] f = new int[5];
+    boolean d = true;
     int s = 0;
-    int R = 0, G = 0, B = 0;
-    boolean turn = false;
+
+    int[] G = new int[5], R = new int[5], B = new int[5];
+    boolean[] turn = new boolean[5];
+
+    public void init() {
+        for (int i = 0; i < 5; i++) {
+            x[i] = (int) (random() * 800);
+            y[i] = (int) (random() * 600);
+            f[i] = (int) (random() * 3);
+            R[i] = (int) (random() * 255);
+            G[i] = (int) (random() * 255);
+            B[i] = (int) (random() * 255);
+        }
+    }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawString("分数：" + s, 100, 100);
 
-        if (turn) {
-            R = (int) (random() * 255);
-            G = (int) (random() * 255);
-            B = (int) (random() * 255);
+        if (d) {
+            d = false;
+            init();
         }
-        g.setColor(new Color(R, G, B));
-        g.fillOval(x, y, 30, 30);
-
+        g.drawString("分数：" + s, 100, 100);
+        for (int i = 0; i < 5; i++) {
+            if (turn[i]) {
+                R[i] = (int) (random() * 255);
+                G[i] = (int) (random() * 255);
+                B[i] = (int) (random() * 255);
+            }
+            g.setColor(new Color(R[i], G[i], B[i]));
+            g.fillOval(x[i], y[i], 30, 30);
+        }
     }
 
     @Override
@@ -44,37 +62,40 @@ public class Myballpanel extends JPanel implements Runnable {
     }
 
     public void fun() {
-        int f1 = f;
-        if (f == 0) {
-            x++;
-            y++;
-        } else if (f == 1) {
-            x++;
-            y--;
-        } else if (f == 2) {
-            x--;
-            y--;
-        } else if (f == 3) {
-            x--;
-            y++;
-        }
-        if (y >= 570) {
-            if (f == 0) f = 1;
-            else f = 2;
-        } else if (x >= 770) {
-            if (f == 1) f = 2;
-            else f = 3;
-        } else if (y <= 0) {
-            if (f == 2) f = 3;
-            else f = 0;
-        } else if (x <= 0) {
-            if (f == 3) f = 0;
-            else f = 1;
-        }
+        int[] f1 = new int[5];
+        for (int i = 0; i < 5; i++) {
+            f1[i] = f[i];
+            if (f[i] == 0) {
+                x[i]++;
+                y[i]++;
+            } else if (f[i] == 1) {
+                x[i]++;
+                y[i]--;
+            } else if (f[i] == 2) {
+                x[i]--;
+                y[i]--;
+            } else if (f[i] == 3) {
+                x[i]--;
+                y[i]++;
+            }
+            if (y[i] >= 570) {
+                if (f[i] == 0) f[i] = 1;
+                else f[i] = 2;
+            } else if (x[i] >= 770) {
+                if (f[i] == 1) f[i] = 2;
+                else f[i] = 3;
+            } else if (y[i] <= 0) {
+                if (f[i] == 2) f[i] = 3;
+                else f[i] = 0;
+            } else if (x[i] <= 0) {
+                if (f[i] == 3) f[i] = 0;
+                else f[i] = 1;
+            }
 
-        turn = (f1 != f);
-        if (turn) {
-            s += 5;
+            turn[i] = (f1[i] != f[i]);
+            if (turn[i]) {
+                s += 5;
+            }
         }
     }
 }

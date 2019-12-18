@@ -19,8 +19,9 @@ public class Main {
         panel.addKeyListener(panel);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
-        frame.setFocusable(true);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setFocusable(true);
     }
 }

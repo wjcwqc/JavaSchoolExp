@@ -86,7 +86,7 @@ public class Wordpanel extends JPanel implements Runnable, KeyListener {
     public void keyPressed(KeyEvent e) {
         for (int i = 0; i < 10; i++) {
             System.out.println("a");
-            if (e.getKeyChar() == c[i]) {
+            if (e.getKeyCode() == c[i]) {
                 s += 5;
                 c[i] = (char) (random() * 26 + 65);
                 x[i] = (int) (random() * 800);

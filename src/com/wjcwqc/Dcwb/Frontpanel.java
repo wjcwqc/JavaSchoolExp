@@ -41,11 +41,14 @@ public class Frontpanel extends JPanel implements Runnable, KeyListener {
         super.paint(g);
         this.setBackground(Color.white);
         g.setFont(new Font("微软雅黑", Font.BOLD, 30));
-        g.setColor(Color.BLACK);
+
         for (int x = 0; x < xmax; x++) {
             for (int y = 0; y < ymax; y++) {
                 if (block[x][y] > right) {
                     g.setColor(Color.BLACK);
+                    g.fillRect(bx * x, by * y + sy, bx, by);
+                } else if (block[x][y] > right - 1) {
+                    g.setColor(Color.yellow);
                     g.fillRect(bx * x, by * y + sy, bx, by);
                 }
             }
@@ -71,13 +74,13 @@ public class Frontpanel extends JPanel implements Runnable, KeyListener {
     private void blockmove() {
         if (sy >= 0) {
             sy = -250;
-            swichmove();
+            switchmove();
         }
         sy += speed;
         level();
     }
 
-    private void swichmove() {
+    private void switchmove() {
         for (int x = 0; x < xmax; x++) {
             for (int y = ymax - 1; y > 0; y--) {
                 block[x][y] = block[x][y - 1];
@@ -129,6 +132,9 @@ public class Frontpanel extends JPanel implements Runnable, KeyListener {
                 if (block[i][ymax - 1] > right) {
                     s += 5;
                     block[i][ymax - 1] = 0;
+                } else if (block[i][ymax - 1] > right - 1) {
+                    s += 2;
+                    block[i][ymax - 1] += 1;
                 } else {
                     s -= 5;
                 }
